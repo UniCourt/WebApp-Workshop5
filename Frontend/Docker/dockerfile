@@ -1,0 +1,11 @@
+FROM node:18.18.2-alpine3.18 AS development
+
+RUN npm install -g @angular/cli@15.0.1
+
+WORKDIR /home/Frontend/angular-frontend
+
+COPY Frontend/angular-frontend/*.json ./
+
+RUN npm install 
+
+COPY ./Frontend/angular-frontend ./

@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    color: gray;
+    height: 100vh;
+}
+.home {
+    height: 100vh;
+}
+p {
+    font-size: 14px;
+}
+.pt-5 {
+    padding-top: 5px !important;
+}
+.pb-5 {
+    padding-bottom: 5px !important;
+}
+.pl-0 {
+    padding-left: 0 !important;
+}
+.pr-0 {
+    padding-right: 0 !important;
+}
+.mt-50 {
+    margin-top: 50px;
+}
+.mb-50 {
+    margin-bottom: 50px;
+}
+.m0 {
+    margin: 0;
+}
+.minus {
+    margin-top: -60px;
+}
+.cust-card {
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 20%),
+        0 1px 1px 0 rgb(0 0 0 / 14%),
+        0 2px 1px -1px rgb(0 0 0 / 12%);
+    padding: 20px;
+}
+.table-head {
+    background-color: rgb(55 111 167);
+    color: white;
+    padding: 18px 20px;
+}
+.bg-green {
+    background-color: #28a745;
+}
+.green {
+    color: #28a745;
+}
+
+.red{
+    color: red;
+}
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+.mr-4 {
+    margin-right: 4px;
+}
+.mr-20 {
+    margin-right: 20px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mt-40 {
+    margin-top: 40px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-40 {
+    margin-bottom: 40px;
+}
+th {
+    font-size: 14px;
+    color: #212529;
+}
+td {
+    font-size: 12px;
+}
+.ed-dl {
+    padding: 2px 5px;
+}
+.fnt-b {
+    font-weight: bold;
+}
+.add {
+    background-color: rgb(99 156 211);
+    border: rgb(99 156 211);
+}
+.update {
+    background-color: rgb(99 156 211);
+    border: rgb(99 156 211);
+}
+.search-btn {
+    background-color: rgb(99 156 211);
+    border: rgb(99 156 211);
+    color: white;
+}
+
+.t-center {
+    text-align: center;
+}
+.signup-card {
+    width: 750px;
+    padding: 16px 26px;
+    border: 1px solid lightgrey;
+    /* box-shadow: 0px 4px 6px 1px rgba(12, 12, 12, 0.2); */
+    box-shadow: 0px 1px 1px 1px rgba(8, 4, 6, -0.8);
+}
+.boxshadow-btm {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.35);
+}
+#or {
+    position: relative;
+    width: 300px;
+    height: 50px;
+
+    line-height: 50px;
+    text-align: center;
+}
+
+#or::before,
+#or::after {
+    position: absolute;
+    width: 130px;
+    height: 1px;
+
+    top: 24px;
+
+    background-color: #aaa;
+
+    content: "";
+}
+
+#or::before {
+    left: 0;
+}
+
+#or::after {
+    right: 0;
+}

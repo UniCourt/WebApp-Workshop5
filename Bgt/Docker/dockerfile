@@ -1,0 +1,21 @@
+FROM node:18.16.0-alpine3.17 As development
+
+ARG NODE_ENV
+
+LABEL maintainer="UniCourt" \
+    version="1.0.0" \
+    description="Docker image for Workshop 5"
+
+WORKDIR /home/Bgt/nest-bgt
+
+RUN npm install -g @nestjs/cli
+
+COPY Bgt/nest-bgt/package.json ./
+
+RUN npm install
+
+COPY Bgt/nest-bgt/ ./
+
+RUN npm run build
+
+RUN if [[ "$NODE_ENV" != "dev" ]] ; then npm prune --production ; fi

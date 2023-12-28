@@ -1,0 +1,109 @@
+version: "3.7"
+services:
+    service-nest-backend:
+        container_name: nest-backend
+        image: testing_nest_backend:latest
+        build:
+            context: ./
+            dockerfile: Backend/Docker/dockerfile
+            target: development
+            args:
+                NODE_ENV: dev
+        ports:
+            - "3021:3021"
+        env_file:
+            - .env/redis.env
+        networks:
+            workshop-network:
+        volumes:
+            - ./Backend/nest-backend:/home/Backend/nest-backend/
+        command: npm run start:debug
+
+    service-nest-bgt:
+        container_name: nest-bgt
+        image: testing_nest_bgt:latest
+        build:
+            context: ./
+            dockerfile: Bgt/Docker/dockerfile
+            target: development
+            args:
+                NODE_ENV: dev
+        env_file:
+            - .env/redis.env
+            - .env/db.env
+        networks:
+            workshop-network:
+        volumes:
+            - ./Bgt/nest-bgt:/home/Bgt/nest-bgt
+        command: npm run start:debug
+
+    service-angular-frontend:
+        container_name: angular-frontend
+        image: testing_frontend_angular:latest
+        build:
+            context: ./
+            dockerfile: Frontend/Docker/dockerfile
+        ports:
+            - "4200:4200"
+        networks:
+            workshop-network:
+        volumes:
+            - ./Frontend/angular-frontend:/home/Frontend/angular-frontend
+        command: sh -c "ng serve --watch --host 0.0.0.0"
+
+    service-postgres:
+        container_name: workshop-postgres
+        image: postgres:14
+        networks:
+            workshop-network:
+                ipv4_address: 30.8.1.202
+        env_file:
+            - .env/db.env
+        ports:
+            - 5438:5432
+        volumes:
+            - WorkshopPgData:/var/lib/postgresql/workshopPgData
+
+    service-pgadmin:
+        container_name: workshop-pgadmin
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
+        ports:
+            - 5050:80
+        networks:
+            workshop-network:
+
+    service-redis:
+        container_name: workshop-redis
+        image: redis:7.0-alpine
+        ports:
+            - 6379:6379
+        networks:
+             workshop-network:
+        volumes: 
+            - redisData:/var/lib/redis/data
+
+    redis-commander:
+        image: rediscommander/redis-commander:latest
+        environment:
+          - REDIS_HOSTS=service-redis
+        ports:
+          - 8081:8081
+        networks:
+             workshop-network:
+        depends_on:
+          - service-redis
+
+networks:
+    workshop-network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 30.8.0.0/16
+
+volumes:
+  redisData:
+  WorkshopPgData:
