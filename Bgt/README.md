@@ -1,6 +1,3 @@
-├── Docker
-├── nest-bgt
-└── README.md
 
 ### Project files
 
@@ -19,3 +16,4 @@
             const newData = this.csvRepo.create({ data: job.data.data });
             await this.csvRepo.save(newData);
         }
+        ```

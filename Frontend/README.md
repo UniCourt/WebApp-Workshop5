@@ -1,22 +1,24 @@
-.
-├── Docker
-├── nest-bgt
-└── README.md
-
 ### Project files
 
-- ##### job.trigger.ts
-    -   Path: `Bgt/nest-bgt/src/bull/job.trigger.ts`
+- ##### app.component.ts
+    -   Path: `Frontend/angular-frontend/src/app/app.component.ts`
     -   Code:
         ```
-        constructor(
-            @InjectRepository(DbEntity) private readonly csvRepo: Repository<DbEntity>,
-        ) {}
-        ```
-
-        ```
-        @Process("upload-job")
-        async createEntry(job: Job<any>) {
-            const newData = this.csvRepo.create({ data: job.data.data });
-            await this.csvRepo.save(newData);
+        async uploadCsv() {
+            console.log(this.selectedFile);
+            
+            if (this.selectedFile) {
+            this.error = "";
+            const formData = new FormData();
+            formData.append('file', this.selectedFile, this.selectedFile.name);
+                this.http.post('http://localhost:3021/csv/upload', formData).subscribe((data)=>{
+                this.isUploaded = true;
+            },(err)=>{
+                
+                console.log(err);
+            });
+            }else{
+            this.error = "Please upload the file"
+            }
         }
+        ```

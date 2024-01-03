@@ -1,6 +1,3 @@
-├── Docker
-├── nest-backend
-└── README.md
 
 ### Project files
 
@@ -30,3 +27,4 @@
             this.csvService.addToQueue(file);
             return { message: 'CSV file uploaded and processed successfully' };
         }
+        ```

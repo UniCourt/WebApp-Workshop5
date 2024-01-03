@@ -16,7 +16,8 @@ services:
         networks:
             workshop-network:
         volumes:
-            - ./Backend/nest-backend:/home/Backend/nest-backend/
+            - ./Backend/nest-backend/src:/home/Backend/nest-backend/src
+            - /home/Backend/nest-backend/node_modules            
         command: npm run start:debug
 
     service-nest-bgt:
@@ -34,7 +35,8 @@ services:
         networks:
             workshop-network:
         volumes:
-            - ./Bgt/nest-bgt:/home/Bgt/nest-bgt
+            - ./Bgt/nest-bgt/src:/home/Bgt/nest-bgt/src
+            - /home/Bgt/nest-bgt/node_modules
         command: npm run start:debug
 
     service-angular-frontend:
@@ -48,7 +50,8 @@ services:
         networks:
             workshop-network:
         volumes:
-            - ./Frontend/angular-frontend:/home/Frontend/angular-frontend
+            - ./Frontend/angular-frontend/src:/home/Frontend/angular-frontend/src
+            - /home/Frontend/angular-frontend/node_modules
         command: sh -c "ng serve --watch --host 0.0.0.0"
 
     service-postgres:
