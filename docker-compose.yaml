@@ -13,6 +13,7 @@ services:
             - "3021:3021"
         env_file:
             - .env/redis.env
+            - .env/db.env
         networks:
             workshop-network:
         volumes:

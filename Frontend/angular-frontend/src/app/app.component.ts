@@ -18,6 +18,18 @@ export class AppComponent {
   }
 
   async uploadCsv() {
-   
+    if (this.selectedFile) {
+      this.error = "";
+      const formData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+          this.http.post('http://localhost:3021/csv/upload', formData).subscribe((data)=>{
+          this.isUploaded = true;
+      },(err)=>{
+          
+          console.log(err);
+      });
+      }else{
+      this.error = "Please upload the file"
+      }
   }
 }
